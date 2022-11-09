@@ -21,13 +21,13 @@
 				<li class="">
 					<a href="../index.html"><span class="fa fa-home mr-3"></span> Home</a>
 				</li>
-				<li class="">
+				<li>
 					<a href="./news.html"><span class="fa fa-newspaper-o mr-3"></span> News</a>
 				</li>
-				<li class="active">
+				<li>
 					<a href="./todo.html"><span class="fa fa-list mr-3"></span> Todo List</a>
 				</li>
-				<li class="">
+				<li class="active">
 					<a href="./search.html"><span class="fa fa-search mr-3"></span> Search</a>
 				</li>
 				<li>
@@ -39,24 +39,35 @@
 
 		<!-- Page Content  -->
 		<div id="content" class="p-4 p-md-5 pt-5">
-			<h2 class="mb-4">Todo List</h2>
-			<!-- Todo List -->
-			<div id="todo-container">
-				<div class="todo-list-header">
-					<input type="text" placeholder="Enter task" id="input-task">
-					<span id="btn-add">Add</span>
+			<h2 class="mb-4">Search</h2>
+			<div class="container" id="main" style="max-width: 100%;">
+				<div class="row justify-content-center align-items-center mt-4">
+					<div class="col-lg-9 col-lg-offset-4">
+						<form>
+							<div class="form-group row mb-3">
+								<div class="col-sm-9">
+									<input type="text" class="form-control" id="input-query" placeholder="Search for news">
+								</div class="col-sm-3">
+								<button type="button" class="btn btn-primary" id="btn-submit">Search</button>
+							</div>
+					</div>
+					</form>
 				</div>
-				<ul id="todo-list">
-
-				</ul>
+			</div>
+			<div id="pagination">
+				<!-- Pagination -->
+			</div>
+			<!-- News list -->
+			<div id="news-container">
 			</div>
 
 		</div>
 	</div>
+	</div>
 
-	<script src="../models/Task.js"></script>
-	<script src="../scripts//storage.js"></script>
-	<script src="../scripts/todo.js"></script>
+	<script src="../models/User.js"></script>
+	<script src="../scripts/storage.js"></script>
+	<script src="../scripts/search.js"></script>
 </body>
 
 </html>

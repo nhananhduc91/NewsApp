@@ -1,25 +1,20 @@
 'use strict'
 //Get elements through DOM
+const inputSearch = document.getElementById('input-query');
+const submitBtn = document.getElementById('btn-submit');
 const newsContainer = document.getElementById('news-container');
 const pageNum = document.getElementById('page-num');
 const pagination = document.getElementById('pagination');
 
-let userSettings = JSON.parse(getFromStorage('userSettings')) || [];
 
-let resultsPerPage;
-if (userSettings.length === 0) {
-  resultsPerPage = 5;
-}
-else {
-  resultsPerPage = userSettings[0].newsPerPage;
-};
+const resultsPerPage = 10;
 let curPage = 1;
 let numPages;
 
-const fetchNews = async function () {
+const fetchNews = async function (keyword) {
   try {
     //Fetch data
-    const result = await fetch(`https://newsapi.org/v2/top-headlines?country=us&pageSize=${resultsPerPage}&category=${userSettings[0].newsCategory}&page=${curPage}&apiKey=84f22bc64fb744b980a2474ebc3713ed`);
+    const result = await fetch(`https://newsapi.org/v2/everything?q=${keyword}&pageSize=${resultsPerPage}&page=${curPage}&apiKey=84f22bc64fb744b980a2474ebc3713ed`);
 
     const data = await result.json();
     if (data.status === 'error') {
@@ -39,7 +34,7 @@ const fetchNews = async function () {
       btnNext.addEventListener('click', function () {
         paginationNode.innerHTML = '';
         curPage++;
-        fetchNews();
+        fetchNews(inputSearch.value);
       });
     };
 
@@ -47,7 +42,7 @@ const fetchNews = async function () {
       btnPrev.addEventListener('click', function () {
         paginationNode.innerHTML = '';
         curPage--;
-        fetchNews();
+        fetchNews(inputSearch.value);
       });
     };
 
@@ -139,5 +134,14 @@ const renderNews = function (data) {
   newsContainer.appendChild(newsEl);
 };
 
-fetchNews();
+submitBtn.addEventListener('click', function () {
+  if (inputSearch.value.trim() === '') {
+    alert('Please input search!');
+  } else {
+    fetchNews(inputSearch.value);
+  }
+});
+
+
+
 

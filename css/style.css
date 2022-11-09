@@ -13,7 +13,7 @@
 #todo-container ul li {
   cursor: pointer;
   position: relative;
-  padding: 12px 8px 12px 40px;
+  padding: 0;
   list-style-type: none;
   background: #eee;
   font-size: 18px;
@@ -41,6 +41,7 @@
   background: #888;
   color: #fff;
   text-decoration: line-through;
+  border: 1px solid #fff;
 }
 
 /* Add a "checked" mark when clicked on */
@@ -50,7 +51,7 @@
   border-color: #fff;
   border-style: solid;
   border-width: 0 2px 2px 0;
-  top: 10px;
+  top: 20px;
   left: 16px;
   transform: rotate(45deg);
   height: 15px;
@@ -62,13 +63,19 @@
   color: black;
   position: absolute;
   right: 0;
-  top: 0;
-  padding: 12px 16px 12px 16px;
+  top: 5px;
+  bottom: 5px;
+  padding: 15px;
+  border-radius: 5px;
 }
 
 #todo-container .close:hover {
   background-color: #f44336;
   color: white;
+}
+
+#todo-container .task-name {
+  padding: 15px 40px;
 }
 
 /* Style the todo-list-header */

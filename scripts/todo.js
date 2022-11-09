@@ -31,11 +31,9 @@ addTaskBtn.addEventListener('click', function () {
 
   if (checkValidate) {
     const newTask = parseTask(taskData);
-    console.log(newTask);
     todoArr.push(newTask);
     saveToStorage('TODO_ARRAY', JSON.stringify(todoArr));
     clearAddTaskForm();
-    console.log(todoArr);
     renderTask(todoArr);
   }
 })
@@ -66,8 +64,8 @@ function renderTask(todoArr) {
       } else {
         taskEl.classList.remove('checked');
       }
-      taskEl.addEventListener('click', () => toggleTask(task.id))
-      taskEl.innerHTML = `${task.taskName}<span onclick="deleteTask(${task.id})" class="close">×</span>`;
+      taskEl.innerHTML = `<p class="task-name mb-0" onclick = "toggleTask(${task.id})">${task.taskName}</p>
+      <span onclick="deleteTask(${task.id})" class="close">×</span>`;
       todoList.prepend(taskEl);
     }
   }
