@@ -4,14 +4,18 @@ const newsContainer = document.getElementById('news-container');
 const pageNum = document.getElementById('page-num');
 const pagination = document.getElementById('pagination');
 
+let currentUser = JSON.parse(getFromStorage('currentUser')) || [];
 let userSettings = JSON.parse(getFromStorage('userSettings')) || [];
 
 let resultsPerPage;
-if (userSettings.length === 0) {
+let newsCategory;
+if (userSettings.length === 0 || currentUser[2] !== userSettings[0].owner) {
   resultsPerPage = 5;
+  newsCategory = 'General'
 }
 else {
   resultsPerPage = userSettings[0].newsPerPage;
+  newsCategory = userSettings[0].newsCategory;
 };
 let curPage = 1;
 let numPages;
@@ -19,7 +23,7 @@ let numPages;
 const fetchNews = async function () {
   try {
     //Fetch data
-    const result = await fetch(`https://newsapi.org/v2/top-headlines?country=us&pageSize=${resultsPerPage}&category=${userSettings[0].newsCategory}&page=${curPage}&apiKey=84f22bc64fb744b980a2474ebc3713ed`);
+    const result = await fetch(`https://newsapi.org/v2/top-headlines?country=us&pageSize=${resultsPerPage}&category=${newsCategory}&page=${curPage}&apiKey=84f22bc64fb744b980a2474ebc3713ed`);
 
     const data = await result.json();
     if (data.status === 'error') {
