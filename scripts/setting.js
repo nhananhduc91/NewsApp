@@ -1,8 +1,11 @@
 'use strict'
+
+//Truy vấn các phần tử html
 const pageSizeInput = document.getElementById('input-page-size');
 const categoryInput = document.getElementById('input-category');
 const saveSettingsBtn = document.getElementById('btn-submit');
 
+//Lấy thông tin user đang đăng nhập từ khi login
 let currentUser = JSON.parse(getFromStorage('currentUser')) || [];
 
 saveSettingsBtn.addEventListener('click', function (e) {

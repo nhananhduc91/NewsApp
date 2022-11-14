@@ -4,6 +4,7 @@ const newsContainer = document.getElementById('news-container');
 const pageNum = document.getElementById('page-num');
 const pagination = document.getElementById('pagination');
 
+//Lấy thông tin user đang đăng nhập và thông tin setting của user đó nếu có tồn tại
 let currentUser = JSON.parse(getFromStorage('currentUser')) || [];
 let userSettings = JSON.parse(getFromStorage('userSettings')) || [];
 
@@ -29,8 +30,10 @@ const fetchNews = async function () {
     if (data.status === 'error') {
       alert(data.message);
     };
+
     //Calculate results per page
     numPages = Math.ceil(data.totalResults / resultsPerPage);
+
     //Render pagination
     const paginationButton = paginationEl(curPage, numPages);
     const paginationNode = document.createElement('nav');

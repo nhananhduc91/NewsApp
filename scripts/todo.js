@@ -1,8 +1,10 @@
 'use strict'
 
+//Lấy thông tin user hiện tại và list todo của user đó
 let currentUser = JSON.parse(getFromStorage('currentUser')) || [];
 let todoArr = JSON.parse(getFromStorage('TODO_ARRAY')) || [];
 
+//Truy vấn các phần từ html
 const taskInput = document.getElementById('input-task');
 const addTaskBtn = document.getElementById('btn-add');
 const todoList = document.getElementById('todo-list');
@@ -12,10 +14,12 @@ function parseTask(taskData) {
   return task;
 }
 
+//Hàm reset form thêm task
 function clearAddTaskForm() {
   taskInput.value = '';
 }
 
+//Hàm thêm task
 addTaskBtn.addEventListener('click', function () {
   const taskData = {
     id: Date.now(),
@@ -38,7 +42,7 @@ addTaskBtn.addEventListener('click', function () {
   }
 })
 
-
+//Hàm xóa task và lưu vào local
 const deleteTask = function (taskId) {
   const newTodoArr = todoArr.filter(task => task.id !== taskId);
   todoArr = newTodoArr;
@@ -46,6 +50,7 @@ const deleteTask = function (taskId) {
   renderTask(todoArr);
 };
 
+//Hàm chuyển đã làm và chưa làm, sau đó lưu vào local
 const toggleTask = function (taskId) {
   const task = todoArr.find(task => task.id === taskId);
   task.isDone = !task.isDone;
@@ -53,7 +58,7 @@ const toggleTask = function (taskId) {
   renderTask(todoArr);
 };
 
-
+//Render các task dựa vào dữ liệu đã làm hay chưa
 function renderTask(todoArr) {
   todoList.innerHTML = '';
   for (const task of todoArr) {
@@ -71,4 +76,5 @@ function renderTask(todoArr) {
   }
 };
 
+//Gọi hàm lúc mới load
 renderTask(todoArr);

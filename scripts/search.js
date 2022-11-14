@@ -17,7 +17,6 @@ const fetchNews = async function (keyword) {
     const result = await fetch(`https://newsapi.org/v2/everything?q=${keyword}&pageSize=${resultsPerPage}&page=${curPage}&apiKey=84f22bc64fb744b980a2474ebc3713ed`);
 
     const data = await result.json();
-    console.log(data);
     if (data.status === 'error') {
       alert(data.message);
     };
